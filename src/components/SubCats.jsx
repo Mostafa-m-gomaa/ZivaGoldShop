@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState , useContext } from 'react'
 import { apiUrl } from '../App';
 import { AppContext } from '../App';
@@ -14,6 +14,7 @@ const SubCategory = () => {
     const [category, setCategory] = useState('')
     const [subCategories, setSubCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const histtory = useNavigate()
    
 
     // const [productIds, setProductIds] = 
@@ -53,7 +54,7 @@ const SubCategory = () => {
         fetch(`${apiUrl}/subCategories/${param}`)
             .then((res) => res.json())
             .then((data) => {
-              
+              console.log(data)
                 if (data.data) {
                   setImageSrc(data.data.imageCover)
                   if(lang==='ar'){
@@ -69,6 +70,7 @@ const SubCategory = () => {
                   }
 
                 }
+         
             });
     }, [param ,lang]);
 
@@ -109,7 +111,7 @@ const SubCategory = () => {
 <div className="w-[90%] mx-auto absolute bottom-2 left-1" >
 <div className="text-black text-[12px] capitalize">{name}</div>
 <p className='max-w-[90%] overflow-hidden text-black text-[12px]' >{desc}</p>
-<div className="text-[13px] font-extrabold">{sub.price} $</div>
+<div className="text-[13px] font-extrabold"> {sub.price  === 0 && sub.priceAfterDiscount <= 0 ? null  : sub.priceAfterDiscount > 0 ?<div>{sub.priceAfterDiscount} - {sub.price} $</div> : <div>{sub.price } $</div> }   </div>
 </div>
 
 <button onClick={() => toggleProductId(sub._id , sub.price , sub.imageCover ,name)}  className={`hover:rotate-90 active:bg-[#488AEC] active:text-white transition-all border-2 border-[#488AEC] p-0

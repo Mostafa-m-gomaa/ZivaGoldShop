@@ -33,13 +33,15 @@ const Nav = () => {
         }
       };
     useEffect(() => {
-        fetch(`${apiUrl}/categories`)
+        fetch(`${apiUrl}/categories` ,{
+            method: 'GET',
+        })
             .then((res) => res.json())
             .then((data) => {
 
                 if (data.data) {
                     setCategories(data.data);
-                    console.log(data.data);
+                
                 }
             });
     }, []);
@@ -113,8 +115,9 @@ const Nav = () => {
 
                             )
                         })}
-                                   <Link to={`/`}  onClick={() => {setIsChecked(!isChecked) , setNavList(!navList)}} className=" group capitalize sm:border-b-4 border-transparent sm:pb-2  sm:hover:border-black transition-all ">Contact Us</Link>
-                                   <Link to={`/`} onClick={() => {setIsChecked(!isChecked) , setNavList(!navList)}} className=" group capitalize sm:border-b-4 border-transparent sm:pb-2  sm:hover:border-black transition-all ">About Us</Link>
+                                   <Link to={`/special`}  onClick={() => {setIsChecked(!isChecked) , setNavList(!navList)}} className=" group capitalize sm:border-b-4 border-transparent sm:pb-2  sm:hover:border-black transition-all ">Special Orders</Link>
+                                   <Link to={`/contact`}  onClick={() => {setIsChecked(!isChecked) , setNavList(!navList)}} className=" group capitalize sm:border-b-4 border-transparent sm:pb-2  sm:hover:border-black transition-all ">Contact Us</Link>
+                                   <Link to={`/about`} onClick={() => {setIsChecked(!isChecked) , setNavList(!navList)}} className=" group capitalize sm:border-b-4 border-transparent sm:pb-2  sm:hover:border-black transition-all ">About Us</Link>
                     </div>
                 </div>
 

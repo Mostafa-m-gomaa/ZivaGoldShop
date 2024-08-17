@@ -4,7 +4,10 @@ import { useEffect, useState , useContext } from 'react'
 import { apiUrl } from '../App';
 import { AppContext } from '../App';
 import { Link } from 'react-router-dom';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 const Product = () => {
     const param = useParams().id
     const {lang ,productIds, setProductIds , productsObj, setProductsObj }= useContext(AppContext)
@@ -90,11 +93,28 @@ const Product = () => {
       }, [param, lang]);
       
     return (
-    <div className="flex flex-col w-full bg-[#F0EEE4] gap-y-2  relative sm:pb-2">
+    <div className="flex flex-col w-full bg-[#F0EEE4] gap-y-2  relative sm:pb-2 pt-44 sm:pt-52">
         {showImage ? <div className="fixed w-full h-full bg-[#00000073] z-20" onClick={()=>setShowImage(false)}></div>:null}
         {showImage ? <img className='fixed w-[80%] h-[60vh] left-[50%] top-[25%] translate-x-[-50%]  z-30 sm:h-[85vh] sm:top-[10%]' onClick={()=>setShowImage(false)} src={showImageSrc}/> :null}
-       
-        <div className="flex flex-col gap-y-2   w-full text-center justify-end h-[60vh] relative z-10 sm:h-[70vh] pb-2" >
+        <Swiper
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper h-[80vh]"
+      >
+        <SwiperSlide>   <img src={imageSrc} alt=""   onClick={()=>handleImageClick(img)}
+              className={`w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] cursor-pointer `}
+              /></SwiperSlide>
+         {images.map((img,index)=>{
+              return   <SwiperSlide key={index}>   <img src={img} alt=""   onClick={()=>handleImageClick(img)}
+              className={`w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] cursor-pointer `}
+              /></SwiperSlide>
+     
+    }
+    )}
+      </Swiper>
+        <div className="flex flex-col gap-y-2 bg-black  w-full text-center justify-end  relative z-10  pb-2 " >
 
         <div className=" text-white top-[350px] capitalize left-6 text-[30px] sm:text-[40px]  tracking-[3px] z-20 bg-[#0000007a] w-fit mx-auto p-2 rounded-md">{name} </div>
         <div className="capitalize text-[#F0EEE4]">{desc} </div>
@@ -102,16 +122,9 @@ const Product = () => {
         <button onClick={() => toggleProductId(param)} className='bg-[#143FB2] text-white w-fit p-2 cursor-pointer rounded-lg mx-auto transition-all hover:bg-black active:bg-white active:text-black'>{productIds.includes(param) ?"Added" :"Add To Cart +" }</button>
        
         </div>
-<img src={imageSrc} alt="" className='absolute w-full h-[60vh] sm:h-[70vh]' />
-<div className="flex w-[100%] flex-wrap justify-center gap-2">
-    {images.map((img,index)=>{
-        return <img src={img} alt=""   onClick={()=>handleImageClick(img)}
-        className={`w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] cursor-pointer `}
-        />
-    }
-    )}
 
-</div>
+
+
 
     </div>
   )

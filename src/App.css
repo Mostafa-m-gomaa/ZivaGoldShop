@@ -20,6 +20,12 @@
   animation: spinner-y0fdc1 2s infinite ease;
   transform-style: preserve-3d;
  }
+ h1{
+  text-align:center ;
+  text-transform: capitalize ;
+  padding : 20px 0 ;
+  font-size : 40px !important
+ }
  
  .spinner > div {
   background-color: rgba(0,77,255,0.2);
@@ -72,3 +78,27 @@
  }
 /* spinner */
 
+/* swiper */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* swiper */

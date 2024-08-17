@@ -44,7 +44,7 @@ const Categories = () => {
     return (
     <div className="flex flex-col relative w-full bg-[#F0EEE4] gap-y-2">
         <div className="absolute text-white top-[350px] capitalize left-6 text-[30px] sm:text-[40px]  tracking-[3px] z-20">{name} -</div>
-<img src={imageSrc} alt="" className='w-full h-[80vh]' />
+<img src={imageSrc} alt="" className='w-full sm:h-[100vh] h-[80vh]' />
 <div className="absolute z-2 w-full h-[80vh] bg-[#0000006b] "></div>
 <div className="flex w-full p-[6px] gap-1 justify-center flex-wrap">
   {subCategories.map((sub)=>{
@@ -57,7 +57,7 @@ const Categories = () => {
       desc = sub.description_ar
     }
     return(
-      <Link to={`/subCat/${sub._id}`} className="w-[45%] h-[35vh] sm:h-[45vh] bg-white p-[2px] sm:w-[23%] flex flex-col gap-y-1">
+      <Link to={`/subCat/${sub._id}`} className="w-[45%] h-[35vh] sm:h-[45vh] bg-white p-[2px] sm:w-[23%] flex flex-col gap-y-1" data-aos="fade-down">
 <img src={sub.imageCover} alt="" className='max-w-[100%] min-w-[100%] max-h-[60%] min-h-[60%] sm:min-h-[70%] sm:max-h-[70%] ' />
 <div className="w-[90%] mx-auto">
 <div className="text-black text-[12px] capitalize">{name}</div>

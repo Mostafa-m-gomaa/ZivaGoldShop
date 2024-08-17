@@ -51,6 +51,9 @@ const Cart = () => {
             if(data.status === 'success'){
                 toast.success('Order Submitted Successfully')
             }
+           else if(data.status === 'fail'){
+                toast.error(data.message)
+            }
           })
           .catch((error) => {
             console.error(error);
@@ -74,7 +77,7 @@ const Cart = () => {
   <div class="flex flex-col gap-4 p-6">
     <div class="relative h-11 w-full min-w-[200px]">
       <input
-      required
+    
       onChange={(e)=>setEmail(e.target.value)}
         placeholder=""
         type='email'
@@ -88,7 +91,7 @@ const Cart = () => {
     </div>
     <div class="relative h-11 w-full min-w-[200px]">
       <input
-      required
+     required
         placeholder=""
         onChange={(e)=>setPhone(e.target.value)}
         type='number'
@@ -129,7 +132,7 @@ const Cart = () => {
     </div>
     <div class="relative h-11 w-full min-w-[200px]">
       <input
-      required
+    required
       onChange={handleImageChange}
       accept='image/*'
         placeholder=""
@@ -156,9 +159,9 @@ const Cart = () => {
     )
 })}
     </div>
-    <div className='capitalize border-b-2 border-black my-3 p-2'>
+    {/* <div className='capitalize border-b-2 border-black my-3 p-2'>
         Total Price is :  {productsObj.reduce((acc , el) => acc + el.price , 0) } $
-    </div>
+    </div> */}
     <button
       data-ripple-light="true"
       type="submit"
